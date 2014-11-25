@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.0.5'
+    compile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    compile 'cglib:cglib-nodep:2.2'
+}
+
+apply plugin: 'groovy'
+
+apply plugin: 'war'
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+gretty {
+    port = 8080
+    contextPath = '/veriwolf'
+}
