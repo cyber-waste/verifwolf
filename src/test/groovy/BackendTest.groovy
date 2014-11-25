@@ -15,4 +15,12 @@ class BackendTest extends Specification {
         then:
             backend.searchFor('data') == 0
     }
+
+    def 'search for non-existing text'() {
+        when:
+        files.cat(_) >> 'data'
+
+        then:
+        backend.searchFor('non-existing') == -1
+    }
 }

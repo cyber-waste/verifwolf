@@ -3,7 +3,7 @@ import sun.print.BackgroundLookupListener
 /**
  * @author yaroslav.yermilov
  */
-Backend backend = new Backend(new FileSystem())
+Backend backend = new Backend(new Files())
 String searchRequest = request.getParameter('searchRequest')
 
 String result = searchRequest ? backend.searchFor(searchRequest) : ''
@@ -17,11 +17,11 @@ html.html {
 
         form (method: 'post', action: 'Main.groovy') {
             p 'Request'
-            input (type: 'text', name: 'searchRequest')
-            input (type: 'submit', value: 'Submit')
+            input (id: 'searchRequest', type: 'text', name: 'searchRequest')
+            input (id: 'submit', type: 'submit', value: 'Submit')
         }
 
-        p "Result: ${result}"
+        p id: 'result', "Result: ${result}"
     }
 }
 
