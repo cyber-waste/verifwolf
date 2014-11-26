@@ -50,4 +50,12 @@ class BackendTest extends Specification {
             'some data' | 'some'     | 0
             'some data' | 'somedata' | -1
     }
+
+    def 'behaviour test'() {
+        when:
+            backend.searchFor('non-existing')
+
+        then:
+            1 * files.cat('F:\\data.txt') >> 'data'
+    }
 }
