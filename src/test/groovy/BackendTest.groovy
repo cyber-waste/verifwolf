@@ -23,4 +23,17 @@ class BackendTest extends Specification {
         then:
         backend.searchFor('non-existing') == -1
     }
+
+    def 'load testing'() {
+        when:
+            files.cat(_) >> 'data'
+            def concurrentCount = 100000
+
+        then:
+            concurrentCount.times {
+                new Thread({
+                    backend.searchFor('data') == 0
+                }).start()
+            }
+    }
 }
