@@ -36,4 +36,18 @@ class BackendTest extends Specification {
                 }).start()
             }
     }
+
+    def 'data-driven test'() {
+        when:
+            files.cat(_) >> data
+
+        then:
+            backend.searchFor(request) == result
+
+        where:
+            data        | request    | result
+            'some data' | 'data'     | 5
+            'some data' | 'some'     | 0
+            'some data' | 'somedata' | -1
+    }
 }
