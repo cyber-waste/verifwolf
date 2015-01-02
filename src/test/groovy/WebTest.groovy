@@ -7,16 +7,16 @@ class WebTest extends GebReportingSpec {
 
     def 'web test with non-existing data'() {
         when:
-        to MainPage
+            to MainPage
 
         and:
-        $('form').with {
-            searchRequest = 'non-existing data'
-            $('#submit').click()
-        }
+            $('form').with {
+                searchRequest = 'non-existing data'
+                $('#submit').click()
+            }
 
         then:
-        $('#result').text() == 'Result: -1'
+            $('#result').text() == 'Result: -1'
     }
 
     def 'web test with existing data'() {
